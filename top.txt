@@ -19,4 +19,4 @@ MiB Swap:   3906,0 total,   2100,0 free,   1806,0 used.   1767,8 avail Mem
    1379 george    20   0    7240    516    324 S   0,3   0,0   0:04.04 dbus-daemon           
    1680 george    20   0   32,3g  76548  34468 S   0,3   2,0 123:35.44 chrome                
    1746 george    20   0  162872      0      0 S   0,3   0,0   0:34.24 at-spi2-registr       
- 321995 george    20   0   32,6g  87408  44160 S   0,3   2,2   8:22.71 chrome
+ 321995 george    20   0   32,6g  87408  44160 S   0,3   2,2   8:22.71 chrome                
