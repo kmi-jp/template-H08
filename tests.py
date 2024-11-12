@@ -1,8 +1,8 @@
 import pytest
 
-from parse_top import parse_top
+from command_parser import parse_cmd_top, parse_cmd_ip, process_ip_list
 
-data = [
+top = [
     ("10", "root", "0,3", "0,0", "rcu_sched"),
     ("877", "root", "6,6", "0,8", "Xorg"),
     ("1209", "george", "0,3", "0,1", "kded5"),
@@ -20,7 +20,71 @@ data = [
     ("328731", "george", "0,7", "0,1", "top"),
 ]
 
+ip_list = [
+    {
+        'name': 'lo', 
+        'flags': ['LOOPBACK', 'UP', 'LOWER_UP'], 
+        'mac': '00:00:00:00:00:00', 
+        'inet': '127.0.0.1/8', 
+        'inet6': '::1/128'
+    }, 
+    {
+        'name': 'eno1', 
+        'flags': ['BROADCAST', 'MULTICAST', 'UP', 'LOWER_UP'], 
+        'mac': '2c:24:a7:49:99:e6', 
+        'inet': '192.168.0.142/24', 
+        'inet6': 'fe80::7daab:5fb6:efa9:2bca/64'
+    }, 
+    {
+        'name': '8ee654dfa368e8', 
+        'flags': ['NO-CARRIER', 'BROADCAST', 'MULTICAST', 'UP'], 
+        'mac': '02:42:49:b5:df:b2', 
+        'inet': '173.29.0.1/16', 
+    }, 
+    {
+        'name': 'docker0', 
+        'flags': ['NO-CARRIER', 'BROADCAST', 'MULTICAST', 'UP'], 
+        'mac': '02:82:c5:9f:12:04', 
+        'inet': '176.15.0.1/16', 
+    },
+    {
+        'name': 'llw0', 
+        'flags': ['UP', 'BROADCAST', 'SMART', 'RUNNING', 'SIMPLEX', 'MULTICAST'], 
+        'mac': '46:3f:9d:48:78:2d', 
+        'inet6': 'fb81::645e:2d3f:fe37:780d/64',
+    }
+]
 
-def test_output():
-    output = parse_top("top.txt")
-    assert data == output
+all_list = {'inet': ['8ee654dfa368e8', 'docker0'], 
+            'inet6': ['llw0'], 
+            'both': ['lo', 'eno1']}
+
+no_carrier_list = {'inet': ['8ee654dfa368e8', 'docker0'], 
+                   'inet6': [], 
+                   'both': []}
+
+multicast_list = {'inet': ['8ee654dfa368e8', 'docker0'],
+                  'inet6': ['llw0'], 
+                  'both': ['eno1']}
+
+
+def test_parse_cmd_top():
+    output = parse_cmd_top("top.txt")
+    assert top == output
+
+
+def test_parse_cmd_ip():
+    output = parse_cmd_ip("ip.txt")
+    assert ip_list == output
+
+
+def test_process_ip_list():
+    ip_output = parse_cmd_ip("ip.txt")
+
+    process_ip_output = process_ip_list(ip_output)
+    process_no_carrier_output = process_ip_list(ip_output, flag="NO-CARRIER")
+    process_multicast_output = process_ip_list(ip_output, flag="MULTICAST")
+
+    assert process_ip_output == all_list
+    assert process_no_carrier_output == no_carrier_list
+    assert process_multicast_output == process_multicast_output
