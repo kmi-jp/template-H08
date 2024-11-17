@@ -8,7 +8,7 @@
     link/ether 2c:24:a7:49:99:e6 brd ff:ff:ff:ff:ff:ff
     inet 192.168.0.142/24 brd 192.168.0.255 scope global dynamic noprefixroute eno1
        valid_lft 7195sec preferred_lft 7195sec
-    inet6 fe80::7daab:5fb6:efa9:2bca/64 scope link noprefixroute 
+    inet6 fe80::7dab:5fb6:efa9:2bca/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
 3: br-8ee654dfa368e8: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
     link/ether 02:42:49:b5:df:b2 brd ff:ff:ff:ff:ff:ff
