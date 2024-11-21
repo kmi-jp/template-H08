@@ -33,7 +33,7 @@ ip_list = [
         'flags': ['BROADCAST', 'MULTICAST', 'UP', 'LOWER_UP'], 
         'mac': '2c:24:a7:49:99:e6', 
         'inet': '192.168.0.142/24', 
-        'inet6': 'fe80::7daab:5fb6:efa9:2bca/64'
+        'inet6': 'fe80::7dab:5fb6:efa9:2bca/64'
     }, 
     {
         'name': '8ee654dfa368e8', 
