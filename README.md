@@ -113,7 +113,7 @@ assert ip_list == ip_output
 
 Funkce `proces_list(ip_list, flag=None)` bere jako vstup seznam, který je výstupem funkce `parse_cmd_ip` a roztřídí podle ip adres jména jednotlivých síťových rozhraní do tří kategorií (`inet`, `inet6` a `both`, podle toho jake adresy má rozhraní k dispozici). Výsledkem pak bude slovník, který pro tyto tři kategorie obsahuje seznam jmen rozhraní. Pokud je navíc zadán nepovinný parametr `flag`, výsledek obsahuje pouze rozhraní, které mají daný příznak.
 
-**Snažte se co nejvíc použít strukturální rozpoznávání vzorů.**
+**Pro zpracování parametru `ip_list` použijte strukturální rozpoznávání vzorů.**
 
 Příklad výstupu:
 ```python
